@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Snake</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0d1322;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+  #scene { position: fixed; inset: 0; }
+  #scene canvas { display: block; }
+
+  .hud { position: fixed; left: 0; right: 0; display: flex; justify-content: space-between;
+    align-items: baseline; padding: 18px 28px; pointer-events: none;
+    color: #dfe6ff; z-index: 5; }
+  .hud h1 { margin: 0; font-size: 20px; letter-spacing: 6px; font-weight: 700;
+    background: linear-gradient(90deg, #9dff57, #39c07a);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .scores { display: flex; gap: 26px; font-size: 15px; }
+  .scores b { color: #9dff57; font-variant-numeric: tabular-nums; }
+  .scores .best b { color: #ffd76a; }
+  b#score.pop { animation: scorepop 0.35s ease; display: inline-block; }
+  @keyframes scorepop { 35% { transform: scale(1.6); color: #ffd76a; } }
+
+  #hint { position: fixed; bottom: 16px; left: 0; right: 0; text-align: center;
+    color: #6f7ea8; font-size: 13px; letter-spacing: 1px; pointer-events: none; z-index: 5; }
+
+  #gameover { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(8, 12, 24, 0.72); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 10; }
+  #gameover.show { opacity: 1; pointer-events: auto; }
+  .panel { text-align: center; color: #dfe6ff; padding: 40px 64px;
+    background: rgba(13, 19, 34, 0.85); border: 1px solid rgba(120, 160, 255, 0.25);
+    border-radius: 18px; box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); }
+  .panel h2 { margin: 0 0 10px; font-size: 40px; letter-spacing: 8px; font-weight: 800;
+    background: linear-gradient(90deg, #ff6a5e, #ffb35e);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .panel .final { font-size: 16px; color: #9fb0dd; margin-bottom: 6px; }
+  .panel .final b { color: #9dff57; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .panel .newbest { display: none; margin: 4px 0 10px; font-size: 13px; letter-spacing: 2px;
+    color: #ffd76a; }
+  .panel .newbest.show { display: block; }
+  .panel button { margin-top: 18px; padding: 12px 34px; font-size: 15px; letter-spacing: 2px;
+    font-weight: 700; color: #0d1322; background: linear-gradient(90deg, #9dff57, #39c07a);
+    border: none; border-radius: 10px; cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease; }
+  .panel button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(80, 220, 120, 0.35); }
+  .panel .sub { margin-top: 12px; font-size: 12px; color: #6f7ea8; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+  <div id="scene"></div>
+  <div class="hud">
+    <h1>3D&nbsp;SNAKE</h1>
+    <div class="scores">
+      <div>Score <b id="score">0</b></div>
+      <div class="best">Best <b id="best">0</b></div>
+    </div>
+  </div>
+  <div id="hint">Steer with Arrow keys or WASD</div>
+  <div id="gameover">
+    <div class="panel">
+      <h2>GAME OVER</h2>
+      <div class="final">Score <b id="final">0</b></div>
+      <div class="newbest" id="newbest">&#9733; NEW BEST &#9733;</div>
+      <button id="restart">Play again</button>
+      <div class="sub">or press Enter</div>
+    </div>
+  </div>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

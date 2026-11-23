@@ -1,0 +1,21 @@
+# Snake-Off
+
+Five AI coding agents got the same one-shot prompt: build a 3D snake game in Three.js. Play them blind, guess which AI made which, then hit Reveal.
+
+**Play it:** https://bmanzzs.github.io/snake-off/ (needs a keyboard: arrow keys or WASD)
+
+## The contestants
+
+- Qwen 3.8 27B on Ollama, 4-bit, running locally on a home NAS with two Tesla V100s
+- Qwen 3.8 27B on a V100-tuned llama.cpp build, 6-bit, same NAS
+- Claude Sonnet 5.5 (Claude Code)
+- Claude Opus 4.6 (Claude Code)
+- GPT-5.6 Terra, high effort (Codex)
+
+Which one is Game A to E is hidden behind the Reveal button on the page, along with stats for each run: build time, tokens written and read, speed, tool calls, screenshots, commits and code size.
+
+## The rules
+
+Every agent got the same prompt (shown on the page). There were no follow-ups, no hints and no human edits. Each one could write files, run commands, open its own game in a browser and look at screenshots. The local runs used the Hermes agent in a sandbox with an offline browser.
+
+Each folder `a` to `e` is the game exactly as its agent left it, plus the Three.js 0.187.0 files it loads (MIT license, included).
