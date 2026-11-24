@@ -2,7 +2,7 @@
 
 Seven AI coding agents got the same one-shot prompt: build a 3D snake game in Three.js. Play them blind, guess which AI made which, then hit Reveal.
 
-**Play it:** https://bmanzzs.github.io/snake-off-redesign/ (arrow keys, WASD, or touch steering)
+**Play it:** https://bmanzzs.github.io/snake-off/ (arrow keys, WASD, or touch steering)
 
 ## The contestants
 
@@ -24,7 +24,7 @@ Each game folder under `round-7-shuffle-2/` is the game exactly as its agent lef
 
 ## Updating the comparison
 
-This standalone redesign shares history with [the original experiment](https://github.com/bmanzzs/snake-off). GitHub Pages serves the root of `main` directly.
+The arcade redesign (first built in a separate repo, snake-off-redesign) is merged here. GitHub Pages serves the root of `main` directly.
 
 The active roster is in `runs.js`. The reveal reads `results.json`, including the breakdown for Gemini’s browser tester. Each game directory contains its own preview image. A new lineup gets a fresh round ID and shuffled letters.
 
