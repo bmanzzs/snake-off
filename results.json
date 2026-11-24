@@ -1,7 +1,7 @@
 {
   "A": {
     "key": "gpt-5.6-terra",
-    "name": "GPT-5.6 Terra (high)",
+    "name": "GPT-5.6 Terra (High)",
     "where": "Cloud",
     "maker": "OpenAI",
     "harness": "Codex",
@@ -31,7 +31,7 @@
   },
   "B": {
     "key": "gemma",
-    "name": "Gemma 4 31B",
+    "name": "Gemma 4 31B (Thinking on)",
     "where": "Local: home NAS, Ollama, 4-bit (QAT)",
     "maker": "Google (open weights)",
     "harness": "Hermes Agent",
@@ -59,7 +59,7 @@
   },
   "C": {
     "key": "opus-4.6",
-    "name": "Claude Opus 4.6",
+    "name": "Claude Opus 4.6 (High)",
     "where": "Cloud",
     "maker": "Anthropic",
     "harness": "Claude Code",
@@ -139,7 +139,7 @@
   },
   "E": {
     "key": "qwen-fast",
-    "name": "Qwen 3.8 27B (fast)",
+    "name": "Qwen 3.8 27B fast (Thinking on)",
     "where": "Local: home NAS, V100-tuned llama.cpp, 6-bit",
     "maker": "Alibaba (open weights)",
     "harness": "Hermes Agent",
@@ -174,7 +174,7 @@
   },
   "F": {
     "key": "inkling",
-    "name": "Inkling 2 Mini 26B",
+    "name": "Inkling 2 Mini 26B (Medium)",
     "where": "Local: home NAS, V100-tuned llama.cpp, 4-bit",
     "maker": "Thinking Machines (open weights)",
     "harness": "Hermes Agent",
@@ -209,7 +209,7 @@
   },
   "G": {
     "key": "sonnet-5.5",
-    "name": "Claude Sonnet 5.5",
+    "name": "Claude Sonnet 5.5 (High)",
     "where": "Cloud",
     "maker": "Anthropic",
     "harness": "Claude Code",
