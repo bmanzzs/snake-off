@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Snake-Off</title>
-<meta name="description" content="Five AI coding agents, one prompt, one 3D snake game. Play them blind, guess who made which, then reveal.">
+<meta name="description" content="Six AI coding agents, one prompt, one 3D snake game. Play them blind, guess who made which, then reveal.">
 <style>
   :root {
     --bg: #0b0f0d; --panel: #121915; --panel-2: #18211c; --line: #24322a;
@@ -82,7 +82,7 @@
 <body>
 <main>
   <h1>Snake<span>-</span>Off</h1>
-  <p class="lede">Five AI coding agents got the same one-shot prompt: build a 3D snake game. Two ran on a home server, three in the cloud. Play them blind, guess who made which, then reveal.</p>
+  <p class="lede">Six AI coding agents got the same one-shot prompt: build a 3D snake game. Three ran on a home server, three in the cloud. Play them blind, guess who made which, then reveal.</p>
   <ul class="rules">
     <li>Needs a keyboard: arrow keys or WASD</li>
     <li>Pick your favorite with ★</li>
@@ -106,13 +106,14 @@
 
   <h2>The contestants</h2>
   <ul class="contestants">
-    <li>Qwen 3.8 27B on Ollama, 4-bit (local)</li>
+    <li>Gemma 4 31B on Ollama, 4-bit (local)</li>
     <li>Qwen 3.8 27B on a V100-tuned llama.cpp, 6-bit (local)</li>
+    <li>Inkling 2 Mini 26B on a V100-tuned llama.cpp, 4-bit (local)</li>
     <li>Claude Sonnet 5.5</li>
     <li>Claude Opus 4.6</li>
     <li>GPT-5.6 Terra (high)</li>
   </ul>
-  <p class="muted">The two local runs used the same open-weights model on a home NAS with two Tesla V100s, through the Hermes agent, in a sandbox with an offline browser. The cloud models ran in their own coding apps (Claude Code, Codex).</p>
+  <p class="muted">The three local runs used open-weights models on a home NAS with two Tesla V100s, through the Hermes agent, in a sandbox with an offline browser. The cloud models ran in their own coding apps (Claude Code, Codex).</p>
 
   <section id="results" hidden>
     <h2>The numbers</h2>
@@ -124,18 +125,20 @@
 </main>
 
 <script>
-const GAMES = [{"letter": "A", "href": "a/index.html"}, {"letter": "B", "href": "b/snake/index.html"}, {"letter": "C", "href": "c/index.html"}, {"letter": "D", "href": "d/index.html"}, {"letter": "E", "href": "e/index.html"}];
-const BLOB = "eyJBIjogeyJrZXkiOiAiZ3B0LTUuNi10ZXJyYSIsICJuYW1lIjogIkdQVC01LjYgVGVycmEgKGhpZ2gpIiwgIndoZXJlIjogIkNsb3VkIiwgIm1ha2VyIjogIk9wZW5BSSIsICJoYXJuZXNzIjogIkNvZGV4IiwgImxvY2FsIjogZmFsc2UsICJzdGF0cyI6IHsid2FsbF9zIjogMzM3LjAxNjk5OTk1OTk0NTcsICJtb2RlbF9zIjogMzA2LjM2NDk5OTUzMjY5OTYsICJ0b29sX3MiOiAzMC42NTIwMDA0MjcyNDYwOTQsICJvdXRfdG9rZW5zIjogMTEwOTMsICJyZWFzb25pbmdfdG9rZW5zIjogMzA4NiwgImVmZl90cHMiOiAzNi4yMDg0NDQyMzEyOTM0NiwgImluX3Rva2VucyI6IDEzMzQ1NjMsICJwZWFrX2N0eCI6IDc0NzYzLCAiY2FsbHMiOiAyNiwgInRvb2xfY2FsbHMiOiAyNSwgInNjcmVlbnNob3RzIjogNiwgImNvbXBhY3Rpb25zIjogMCwgImNvbW1pdHMiOiAzLCAiY29kZV9rYiI6IDE0LjAsICJjb2RlX2xpbmVzIjogMjAzfSwgInByb21wdF9jaGFuZ2VzIjogWyInaHR0cDovL2xvY2FsaG9zdDo4MDAwL3NuYWtlL2luZGV4Lmh0bWwnIC0+ICd0aGUgZ2FtZSciXSwgImVuZ2luZSI6IG51bGx9LCAiQiI6IHsia2V5IjogInNvbm5ldC01LjUiLCAibmFtZSI6ICJDbGF1ZGUgU29ubmV0IDUuNSIsICJ3aGVyZSI6ICJDbG91ZCIsICJtYWtlciI6ICJBbnRocm9waWMiLCAiaGFybmVzcyI6ICJDbGF1ZGUgQ29kZSIsICJsb2NhbCI6IGZhbHNlLCAic3RhdHMiOiB7IndhbGxfcyI6IDU2OS45MzAwMDAwNjY3NTcyLCAibW9kZWxfcyI6IDUyNy40MDU5OTk0MjIwNzM0LCAidG9vbF9zIjogMTIyLjg2NDAwMDU1ODg1MzE1LCAib3V0X3Rva2VucyI6IDc5NTQyLCAicmVhc29uaW5nX3Rva2VucyI6IDI2MDg5LCAiZWZmX3RwcyI6IDE1MC44MTczOTcwMDk0NDEzLCAiaW5fdG9rZW5zIjogOTQ4MTg5NSwgInBlYWtfY3R4IjogMTk1NDE3LCAiY2FsbHMiOiA2OCwgInRvb2xfY2FsbHMiOiAxNTQsICJzY3JlZW5zaG90cyI6IDI3LCAiY29tcGFjdGlvbnMiOiAwLCAiY29tbWl0cyI6IDcsICJjb2RlX2tiIjogMzcuNCwgImNvZGVfbGluZXMiOiAxMDgyfSwgInByb21wdF9jaGFuZ2VzIjogW10sICJlbmdpbmUiOiBudWxsfSwgIkMiOiB7ImtleSI6ICJxd2VuLWZhc3QiLCAibmFtZSI6ICJRd2VuIDMuOCAyN0IgKGZhc3QpIiwgIndoZXJlIjogIkxvY2FsOiBob21lIE5BUywgVjEwMC10dW5lZCBsbGFtYS5jcHAsIDYtYml0IiwgIm1ha2VyIjogIkFsaWJhYmEgKG9wZW4gd2VpZ2h0cykiLCAiaGFybmVzcyI6ICJIZXJtZXMgQWdlbnQiLCAibG9jYWwiOiB0cnVlLCAic3RhdHMiOiB7IndhbGxfcyI6IDE4NjEuNzMxMDUwOTY4MTcwMiwgIm1vZGVsX3MiOiAxMzMzLjEsICJ0b29sX3MiOiA1MjguNjMxMDUwOTY4MTcwMywgIm91dF90b2tlbnMiOiA5MzgxNCwgInJlYXNvbmluZ190b2tlbnMiOiBudWxsLCAiZWZmX3RwcyI6IDcwLjM3MjgxNTI0MjY2NzQ3LCAiaW5fdG9rZW5zIjogNTM3OTU2MywgInBlYWtfY3R4IjogOTg2OTUsICJjYWxscyI6IDc0LCAidG9vbF9jYWxscyI6IDExMywgInNjcmVlbnNob3RzIjogMTQsICJjb21wYWN0aW9ucyI6IDEsICJjb21taXRzIjogMywgImNvZGVfa2IiOiAxOS4yLCAiY29kZV9saW5lcyI6IDU5MX0sICJwcm9tcHRfY2hhbmdlcyI6IFtdLCAiZW5naW5lIjogeyJyZXF1ZXN0cyI6IDg2LCAiZGVjb2RlX3Rva2VucyI6IDEyNTI4MCwgImRlY29kZV90cHMiOiAxMTcuODUwMTgzNDk5ODI4NTUsICJwcm9tcHRfdG9rZW5zIjogNjQ3NDc5LCAicHJvbXB0X3RwcyI6IDExNTYuNDIwMzY2NTYwODg5NSwgImRyYWZ0X2FjY2VwdCI6IDAuNDUxMTA5MDg2MjQ5NjA4NX19LCAiRCI6IHsia2V5IjogInF3ZW4tb2xsYW1hIiwgIm5hbWUiOiAiUXdlbiAzLjggMjdCIiwgIndoZXJlIjogIkxvY2FsOiBob21lIE5BUywgT2xsYW1hLCA0LWJpdCIsICJtYWtlciI6ICJBbGliYWJhIChvcGVuIHdlaWdodHMpIiwgImhhcm5lc3MiOiAiSGVybWVzIEFnZW50IiwgImxvY2FsIjogdHJ1ZSwgInN0YXRzIjogeyJ3YWxsX3MiOiAyNzA1LjI4NDQxNDUyOTgwMDQsICJtb2RlbF9zIjogMTk3My43LCAidG9vbF9zIjogNzMxLjU4NDQxNDUyOTgwMDQsICJvdXRfdG9rZW5zIjogNTg2MzUsICJyZWFzb25pbmdfdG9rZW5zIjogbnVsbCwgImVmZl90cHMiOiAyOS43MDgxNjIzMzQ3MDEzMiwgImluX3Rva2VucyI6IDI5NDg2MzgsICJwZWFrX2N0eCI6IDU1MjQ2LCAiY2FsbHMiOiA3NSwgInRvb2xfY2FsbHMiOiAxNjIsICJzY3JlZW5zaG90cyI6IDIwLCAiY29tcGFjdGlvbnMiOiA0LCAiY29tbWl0cyI6IDYsICJjb2RlX2tiIjogMTkuMSwgImNvZGVfbGluZXMiOiA1NjV9LCAicHJvbXB0X2NoYW5nZXMiOiBbXSwgImVuZ2luZSI6IG51bGx9LCAiRSI6IHsia2V5IjogIm9wdXMtNC42IiwgIm5hbWUiOiAiQ2xhdWRlIE9wdXMgNC42IiwgIndoZXJlIjogIkNsb3VkIiwgIm1ha2VyIjogIkFudGhyb3BpYyIsICJoYXJuZXNzIjogIkNsYXVkZSBDb2RlIiwgImxvY2FsIjogZmFsc2UsICJzdGF0cyI6IHsid2FsbF9zIjogMTI1My4zNTAwMDAxNDMwNTExLCAibW9kZWxfcyI6IDExNTguNDkwOTk5NDYwMjIwMywgInRvb2xfcyI6IDg2LjAwOTAwMjIwODcwOTcyLCAib3V0X3Rva2VucyI6IDUzNTExLCAicmVhc29uaW5nX3Rva2VucyI6IDIyNTIyLCAiZWZmX3RwcyI6IDQ2LjE5MDI1OTU5MTk0NTUzLCAiaW5fdG9rZW5zIjogMTUzMzU1ODUsICJwZWFrX2N0eCI6IDE1NzY0NiwgImNhbGxzIjogMTM0LCAidG9vbF9jYWxscyI6IDE0NywgInNjcmVlbnNob3RzIjogMjMsICJjb21wYWN0aW9ucyI6IDAsICJjb21taXRzIjogMiwgImNvZGVfa2IiOiAyMy4wLCAiY29kZV9saW5lcyI6IDYyOX0sICJwcm9tcHRfY2hhbmdlcyI6IFtdLCAiZW5naW5lIjogbnVsbH19";
+const GAMES = [{"letter": "A", "href": "a/index.html"}, {"letter": "B", "href": "b/index.html"}, {"letter": "C", "href": "c/index.html"}, {"letter": "D", "href": "d/index.html"}, {"letter": "E", "href": "e/snake/index.html"}, {"letter": "F", "href": "f/index.html"}];
+const BLOB = "eyJBIjogeyJrZXkiOiAiaW5rbGluZyIsICJuYW1lIjogIklua2xpbmcgMiBNaW5pIDI2QiIsICJ3aGVyZSI6ICJMb2NhbDogaG9tZSBOQVMsIFYxMDAtdHVuZWQgbGxhbWEuY3BwLCA0LWJpdCIsICJtYWtlciI6ICJUaGlua2luZyBNYWNoaW5lcyAob3BlbiB3ZWlnaHRzKSIsICJoYXJuZXNzIjogIkhlcm1lcyBBZ2VudCIsICJsb2NhbCI6IHRydWUsICJub3RlIjogInJhbiBvbiBvbmUgVjEwMCAoaXRzIGd1ZXNzLWFoZWFkIGRyYWZ0IG1vZGVsIG9uIHRoZSBzZWNvbmQpLCB3aXRoIGEgOTZrIGNvbnRleHQsIG9uIGxsYW1hLmNwcCB3aXRoIGNvbW11bml0eSBzcGVlZC11cCBrZXJuZWxzLiBUaGlzIGlzIGl0cyBzZWNvbmQgdHJ5OiB0aGUgZmlyc3QsIHdpdGggYSA2NGsgY29udGV4dCwgZ290IHN0dWNrIGNoYXNpbmcgYSBidWcgdGhhdCB3YXNuJ3QgdGhlcmUgYW5kIHdhcyBzdG9wcGVkIGFmdGVyIDI3IG1pbnV0ZXMuIEFkZGVkIGEgZGF5IGFmdGVyIHRoZSBmaXJzdCBmaXZlLiIsICJzdGF0cyI6IHsid2FsbF9zIjogMTc4Ny43OTIwNjEwOTA0Njk0LCAibW9kZWxfcyI6IDkyMC4wLCAidG9vbF9zIjogODY3Ljc5MjA2MTA5MDQ2OTQsICJvdXRfdG9rZW5zIjogNTA0ODYsICJyZWFzb25pbmdfdG9rZW5zIjogbnVsbCwgImVmZl90cHMiOiA1NC44NzYwODY5NTY1MjE3NCwgImluX3Rva2VucyI6IDM4NDU2MTgsICJwZWFrX2N0eCI6IDczNTEyLCAiY2FsbHMiOiA4OCwgInRvb2xfY2FsbHMiOiAxMDMsICJzY3JlZW5zaG90cyI6IDE4LCAiY29tcGFjdGlvbnMiOiAxLCAiY29tbWl0cyI6IDEsICJjb2RlX2tiIjogMTMuNiwgImNvZGVfbGluZXMiOiA0NDN9LCAicHJvbXB0X2NoYW5nZXMiOiBbXSwgImVuZ2luZSI6IHsicmVxdWVzdHMiOiA5OCwgImRlY29kZV90b2tlbnMiOiAxMDE3MjMsICJkZWNvZGVfdHBzIjogNjYuMTQ1ODY1MDU2OTYwMTMsICJwcm9tcHRfdG9rZW5zIjogMTEyODg2LCAicHJvbXB0X3RwcyI6IDg1OS4zNjk5MjY4MzMzNTE0LCAiZHJhZnRfYWNjZXB0IjogMC41Nzg0NDA2MDEzODI0MjY1fX0sICJCIjogeyJrZXkiOiAiZ3B0LTUuNi10ZXJyYSIsICJuYW1lIjogIkdQVC01LjYgVGVycmEgKGhpZ2gpIiwgIndoZXJlIjogIkNsb3VkIiwgIm1ha2VyIjogIk9wZW5BSSIsICJoYXJuZXNzIjogIkNvZGV4IiwgImxvY2FsIjogZmFsc2UsICJzdGF0cyI6IHsid2FsbF9zIjogMzM3LjAxNjk5OTk1OTk0NTcsICJtb2RlbF9zIjogMzA2LjM2NDk5OTUzMjY5OTYsICJ0b29sX3MiOiAzMC42NTIwMDA0MjcyNDYwOTQsICJvdXRfdG9rZW5zIjogMTEwOTMsICJyZWFzb25pbmdfdG9rZW5zIjogMzA4NiwgImVmZl90cHMiOiAzNi4yMDg0NDQyMzEyOTM0NiwgImluX3Rva2VucyI6IDEzMzQ1NjMsICJwZWFrX2N0eCI6IDc0NzYzLCAiY2FsbHMiOiAyNiwgInRvb2xfY2FsbHMiOiAyNSwgInNjcmVlbnNob3RzIjogNiwgImNvbXBhY3Rpb25zIjogMCwgImNvbW1pdHMiOiAzLCAiY29kZV9rYiI6IDE0LjAsICJjb2RlX2xpbmVzIjogMjAzfSwgInByb21wdF9jaGFuZ2VzIjogWyInaHR0cDovL2xvY2FsaG9zdDo4MDAwL3NuYWtlL2luZGV4Lmh0bWwnIC0+ICd0aGUgZ2FtZSciXSwgImVuZ2luZSI6IG51bGx9LCAiQyI6IHsia2V5IjogImdlbW1hIiwgIm5hbWUiOiAiR2VtbWEgNCAzMUIiLCAid2hlcmUiOiAiTG9jYWw6IGhvbWUgTkFTLCBPbGxhbWEsIDQtYml0IChRQVQpIiwgIm1ha2VyIjogIkdvb2dsZSAob3BlbiB3ZWlnaHRzKSIsICJoYXJuZXNzIjogIkhlcm1lcyBBZ2VudCIsICJsb2NhbCI6IHRydWUsICJub3RlIjogInJhbiBvbiBPbGxhbWEgYWNyb3NzIGJvdGggVjEwMHMgd2l0aCBhIDY0ayBjb250ZXh0LCBmcm9tIEdvb2dsZSdzIHF1YW50aXphdGlvbi1hd2FyZSA0LWJpdCBidWlsZCAoYWJvdXQgMzMgdG9rL3MpLiBJdCByZXBsYWNlZCBhIHNlY29uZCBRd2VuIDMuOCBydW4gYSBkYXkgYWZ0ZXIgdGhlIGZpcnN0IGZpdmUuIiwgInN0YXRzIjogeyJ3YWxsX3MiOiA5MDQuMjc3Mzg1NzExNjY5OSwgIm1vZGVsX3MiOiA4MTUuNiwgInRvb2xfcyI6IDg4LjY3NzM4NTcxMTY2OTksICJvdXRfdG9rZW5zIjogMTM5MzgsICJyZWFzb25pbmdfdG9rZW5zIjogbnVsbCwgImVmZl90cHMiOiAxNy4wODkyNTk0NDA5MDI0MDMsICJpbl90b2tlbnMiOiA2MDA3NDAsICJwZWFrX2N0eCI6IDMyNzg5LCAiY2FsbHMiOiAyOSwgInRvb2xfY2FsbHMiOiAyNiwgInNjcmVlbnNob3RzIjogNSwgImNvbXBhY3Rpb25zIjogMCwgImNvbW1pdHMiOiAyLCAiY29kZV9rYiI6IDkuOCwgImNvZGVfbGluZXMiOiAzMjl9LCAicHJvbXB0X2NoYW5nZXMiOiBbXSwgImVuZ2luZSI6IG51bGx9LCAiRCI6IHsia2V5IjogIm9wdXMtNC42IiwgIm5hbWUiOiAiQ2xhdWRlIE9wdXMgNC42IiwgIndoZXJlIjogIkNsb3VkIiwgIm1ha2VyIjogIkFudGhyb3BpYyIsICJoYXJuZXNzIjogIkNsYXVkZSBDb2RlIiwgImxvY2FsIjogZmFsc2UsICJzdGF0cyI6IHsid2FsbF9zIjogMTI1My4zNTAwMDAxNDMwNTExLCAibW9kZWxfcyI6IDExNTguNDkwOTk5NDYwMjIwMywgInRvb2xfcyI6IDg2LjAwOTAwMjIwODcwOTcyLCAib3V0X3Rva2VucyI6IDUzNTExLCAicmVhc29uaW5nX3Rva2VucyI6IDIyNTIyLCAiZWZmX3RwcyI6IDQ2LjE5MDI1OTU5MTk0NTUzLCAiaW5fdG9rZW5zIjogMTUzMzU1ODUsICJwZWFrX2N0eCI6IDE1NzY0NiwgImNhbGxzIjogMTM0LCAidG9vbF9jYWxscyI6IDE0NywgInNjcmVlbnNob3RzIjogMjMsICJjb21wYWN0aW9ucyI6IDAsICJjb21taXRzIjogMiwgImNvZGVfa2IiOiAyMy4wLCAiY29kZV9saW5lcyI6IDYyOX0sICJwcm9tcHRfY2hhbmdlcyI6IFtdLCAiZW5naW5lIjogbnVsbH0sICJFIjogeyJrZXkiOiAic29ubmV0LTUuNSIsICJuYW1lIjogIkNsYXVkZSBTb25uZXQgNS41IiwgIndoZXJlIjogIkNsb3VkIiwgIm1ha2VyIjogIkFudGhyb3BpYyIsICJoYXJuZXNzIjogIkNsYXVkZSBDb2RlIiwgImxvY2FsIjogZmFsc2UsICJzdGF0cyI6IHsid2FsbF9zIjogNTY5LjkzMDAwMDA2Njc1NzIsICJtb2RlbF9zIjogNTI3LjQwNTk5OTQyMjA3MzQsICJ0b29sX3MiOiAxMjIuODY0MDAwNTU4ODUzMTUsICJvdXRfdG9rZW5zIjogNzk1NDIsICJyZWFzb25pbmdfdG9rZW5zIjogMjYwODksICJlZmZfdHBzIjogMTUwLjgxNzM5NzAwOTQ0MTMsICJpbl90b2tlbnMiOiA5NDgxODk1LCAicGVha19jdHgiOiAxOTU0MTcsICJjYWxscyI6IDY4LCAidG9vbF9jYWxscyI6IDE1NCwgInNjcmVlbnNob3RzIjogMjcsICJjb21wYWN0aW9ucyI6IDAsICJjb21taXRzIjogNywgImNvZGVfa2IiOiAzNy40LCAiY29kZV9saW5lcyI6IDEwODJ9LCAicHJvbXB0X2NoYW5nZXMiOiBbXSwgImVuZ2luZSI6IG51bGx9LCAiRiI6IHsia2V5IjogInF3ZW4tZmFzdCIsICJuYW1lIjogIlF3ZW4gMy44IDI3QiAoZmFzdCkiLCAid2hlcmUiOiAiTG9jYWw6IGhvbWUgTkFTLCBWMTAwLXR1bmVkIGxsYW1hLmNwcCwgNi1iaXQiLCAibWFrZXIiOiAiQWxpYmFiYSAob3BlbiB3ZWlnaHRzKSIsICJoYXJuZXNzIjogIkhlcm1lcyBBZ2VudCIsICJsb2NhbCI6IHRydWUsICJzdGF0cyI6IHsid2FsbF9zIjogMTg2MS43MzEwNTA5NjgxNzAyLCAibW9kZWxfcyI6IDEzMzMuMSwgInRvb2xfcyI6IDUyOC42MzEwNTA5NjgxNzAzLCAib3V0X3Rva2VucyI6IDkzODE0LCAicmVhc29uaW5nX3Rva2VucyI6IG51bGwsICJlZmZfdHBzIjogNzAuMzcyODE1MjQyNjY3NDcsICJpbl90b2tlbnMiOiA1Mzc5NTYzLCAicGVha19jdHgiOiA5ODY5NSwgImNhbGxzIjogNzQsICJ0b29sX2NhbGxzIjogMTEzLCAic2NyZWVuc2hvdHMiOiAxNCwgImNvbXBhY3Rpb25zIjogMSwgImNvbW1pdHMiOiAzLCAiY29kZV9rYiI6IDE5LjIsICJjb2RlX2xpbmVzIjogNTkxfSwgInByb21wdF9jaGFuZ2VzIjogW10sICJlbmdpbmUiOiB7InJlcXVlc3RzIjogODYsICJkZWNvZGVfdG9rZW5zIjogMTI1MjgwLCAiZGVjb2RlX3RwcyI6IDExNy44NTAxODM0OTk4Mjg1NSwgInByb21wdF90b2tlbnMiOiA2NDc0NzksICJwcm9tcHRfdHBzIjogMTE1Ni40MjAzNjY1NjA4ODk1LCAiZHJhZnRfYWNjZXB0IjogMC40NTExMDkwODYyNDk2MDg1fX19";
 const NAMES = {
-  "qwen-ollama": "Qwen 3.8 27B, Ollama (local)",
+  "gemma": "Gemma 4 31B, Ollama (local)",
   "qwen-fast": "Qwen 3.8 27B, fast engine (local)",
+  "inkling": "Inkling 2 Mini 26B (local)",
   "sonnet-5.5": "Claude Sonnet 5.5",
   "opus-4.6": "Claude Opus 4.6",
   "gpt-5.6-terra": "GPT-5.6 Terra",
 };
 const store = {
-  get(k, d) { try { const v = localStorage.getItem("snakeoff." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
-  set(k, v) { try { localStorage.setItem("snakeoff." + k, JSON.stringify(v)); } catch {} },
+  // "snakeoff7.": the letters were reshuffled when Inkling joined and Gemma replaced the Ollama Qwen, so older guesses don't carry over
+  get(k, d) { try { const v = localStorage.getItem("snakeoff7." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("snakeoff7." + k, JSON.stringify(v)); } catch {} },
 };
 let guesses = store.get("guesses", {});
 let fav = store.get("fav", null);
@@ -206,7 +209,7 @@ function render() {
       who.textContent = `Game ${L}`; verdict.textContent = ""; verdict.className = "verdict";
     }
   }
-  document.getElementById("score").textContent = revealed && answered ? `You guessed ${right} of 5 right` : "";
+  document.getElementById("score").textContent = revealed && answered ? `You guessed ${right} of ${GAMES.length} right` : "";
   document.getElementById("results").hidden = !revealed;
   document.getElementById("reveal").hidden = !!revealed;
   document.getElementById("hide").hidden = !revealed;
@@ -232,11 +235,12 @@ function renderStats() {
   const notes = [
     "Effective speed is tokens written divided by time spent waiting on the model, so it also counts reading the prompt and network time. The cloud models' raw writing speed is higher than shown.",
     "Each company counts tokens with its own tokenizer, so token numbers are close but not exact across models.",
-    "The local Qwen runs think out loud inside their output; that thinking isn't split out.",
+    "The local runs think out loud inside their output; that thinking isn't split out.",
   ];
   for (const L of letters) {
     const r = revealed[L];
-    if (r.engine) notes.push(`${r.name}: raw writing speed on the V100s was ${fmtInt(r.engine.decode_tps)} tok/s, reading ${fmtInt(r.engine.prompt_tps)} tok/s, with ${Math.round(100 * r.engine.draft_accept)}% of its guess-ahead (speculative) tokens accepted.`);
+    if (r.note) notes.push(`${r.name}: ${r.note}`);
+    if (r.engine) notes.push(`${r.name}: raw writing speed on the NAS was ${fmtInt(r.engine.decode_tps)} tok/s, reading ${fmtInt(r.engine.prompt_tps)} tok/s, with ${Math.round(100 * r.engine.draft_accept)}% of its guess-ahead (speculative) tokens accepted.`);
     if (r.prompt_changes && r.prompt_changes.length) notes.push(`${r.name}: the test URL in the prompt was swapped for "the game", since its app had no server at that address. A 67-second false start (wrong folder) isn't counted. Codex also packs several actions into one tool call, so its tool count is low by design.`);
   }
   document.getElementById("notes").innerHTML = notes.map(n => `<li>${n}</li>`).join("");
