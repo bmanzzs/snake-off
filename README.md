@@ -6,7 +6,7 @@ Seven AI coding agents got the same one-shot prompt: build a 3D snake game in Th
 
 ## The contestants
 
-- Gemma 4 31B, thinking on, on Ollama, 4-bit (Google's QAT build), running locally on a home NAS with two Tesla V100s (added a day later)
+- Gemma 4 31B, thinking on, on the NAS's fast engine, 8-bit across both cards, running locally on a home NAS with two Tesla V100s (added a day later; rerun on the fast engine, replacing its first run on Ollama)
 - Qwen 3.8 27B, thinking on, on a V100-tuned llama.cpp build, 6-bit, same NAS
 - Inkling 2 Mini 26B, medium effort, on a V100-tuned llama.cpp build, 4-bit, same NAS (one card; added a day later)
 - Claude Sonnet 5.5, high effort (Claude Code)

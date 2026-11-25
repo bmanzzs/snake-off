@@ -31,7 +31,7 @@ const GAMES = [
 const ROUND = "2026-11-seven-shuffle-2";
 const NAMES = {
   "gemini-flash": "Gemini 3.8 Flash (High)",
-  gemma: "Gemma 4 31B (Thinking on), Ollama, local",
+  gemma: "Gemma 4 31B (Thinking on), fast engine, local",
   "qwen-fast": "Qwen 3.8 27B (Thinking on), fast engine, local",
   inkling: "Inkling 2 Mini 26B (Medium), local",
   "sonnet-5.5": "Claude Sonnet 5.5 (High)",
